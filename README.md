@@ -2,7 +2,7 @@
 simple login 
 
 ---
-..* Node.js
-..* Express
-..* mySql
-..* without sequelize
+- Node.js
+- Express
+- mySql
+- without sequelize
