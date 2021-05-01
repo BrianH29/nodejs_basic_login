@@ -1,17 +1,25 @@
-extends layout
-
-block content
-  .timeline
-    form#join-form(action='/auth/join' method='post')
-      .input-group
-        label(for='join-email') 이메일
-        input#join-email(type='email' name='name')
-      .input-group
-        label(for='join-nick') 닉네임
-        input#join-nick(type='text' name='nick')
-      .input-group
-        label(for='join-password') 비밀번호
-        input#join-password(type='password' name='password')
-      if joinError
-        .error-message= joinError
-      button#join-btn.btn(type='submit') 회원가입
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/layout.css')
+    body
+    .container
+      h2 Register
+      p Enter profile
+      form(action='/auth/join' method='post')
+        .form-group
+          label(for='email') Email:
+          input#email.form-control(type='email' name='email')
+        .form-group
+          label(for='user') NickName:
+          input#user.form-control(type='text' name='nick')
+        .form-group
+          label(for='pwd') Password:
+          input#pwd.form-control(type='password' name='password')
+        if joinError
+          .error-message= joinError
+        button.btn.btn-primary(type='submit') Submit

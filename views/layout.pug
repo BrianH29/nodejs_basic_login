@@ -5,22 +5,31 @@ html
     title= title
     meta(name='viewport' content='width=device-width, user-scalable=no')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    link(rel='stylesheet' href='/main.css')
-    script(src='/main.js')
-  body
+    link(rel='stylesheet' href='/layout.css')
+    body
     .container
-      .profile-wrap
-        .profile
-            form#login-form(action='/auth/login' method='post')
-              .input-group
-                label(for='email') 이메일
-                input#email(type='email' name='email' required autofocus)
-              .input-group
-                label(for='password') 비밀번호
-                input#password(type='password' name='password' required)
-              if loginError
+      h2 Login
+      form(action='/auth/login' method='post')
+        .form-group
+          div Email
+          div
+            input#memId.form-control(type='text' placeholder='email' name='memId' required='')
+          div
+            a(href='findId.me') forgot id?
+        .form-group
+          div 비밀번호
+          div
+            input#memPwd.form-control(type='password' placeholder='password' name='memPwd' required='')
+          div
+            a(href='findPwdForm.me') forgot password?
+        table
+          tbody
+            tr
+              td
+                button.btn.btn-primary(type='submit') Login
+              td
+                a.btn.btn-primary(href='/join') Join
+            if loginError
                 .error-message= loginError
-              a#join.btn(href='/join') 회원가입
-              button#login.btn(type='submit') 로그인
-       
+      
       block content
