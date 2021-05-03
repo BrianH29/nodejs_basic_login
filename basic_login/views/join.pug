@@ -1,0 +1,25 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/layout.css')
+    body
+    .container
+      h2 Register
+      p Enter profile
+      form(action='/auth/join' method='post')
+        .form-group
+          label(for='email') Email:
+          input#email.form-control(type='email' name='email')
+        .form-group
+          label(for='user') NickName:
+          input#user.form-control(type='text' name='nick')
+        .form-group
+          label(for='pwd') Password:
+          input#pwd.form-control(type='password' name='password')
+        if joinError
+          .error-message= joinError
+        button.btn.btn-primary(type='submit') Submit
