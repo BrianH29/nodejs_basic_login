@@ -9,5 +9,5 @@ simple login
 - mySql
 - without sequelize
 
-![login](./public/img/Login.PNG)
-![login](./public/img/register.PNG)
+![login](./img/Login.PNG)
+![login](./img/register.PNG)
