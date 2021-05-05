@@ -12,8 +12,9 @@ router.get("/join", (req, res) => {
 });
 
 router.get("/home", async (req, res, next) => {
+  const nick = req.session.nick;
   try {
-    res.render("home");
+    res.render("home", { nick: nick });
   } catch (err) {
     console.err(err);
     return next(err);

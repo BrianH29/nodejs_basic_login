@@ -23,4 +23,26 @@ User.create = (newUser, result) => {
   );
 };
 
+User.login = (user, data) => {
+  sql.query(
+    "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?",
+    [user.email, user.password],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        result(err, null);
+        return;
+      }
+
+      if (result.length > 0) {
+        data(null, result[0]);
+        return;
+      }
+
+      //user not found
+      result({ kind: "NOT FOUND" }, null);
+    }
+  );
+};
+
 module.exports = User;
