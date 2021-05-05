@@ -21,4 +21,13 @@ router.get("/home", async (req, res, next) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  if (req.session === undefined) {
+    res.redirect("/");
+  } else {
+    res.send("failed logout");
+  }
+});
+
 module.exports = router;
