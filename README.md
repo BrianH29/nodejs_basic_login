@@ -4,16 +4,18 @@ simple login
 
 ---
 
-#### basic_login
+### basic_login
 
 - Node.js
 - Express
 - mySql
 - without sequelize
 
-#### basic_login2
+### basic_login2
 
-[x] mvc pattern
+- mvc pattern
+
+---
 
 ![login](./img/Login.PNG)
 ![login](./img/register.PNG)
