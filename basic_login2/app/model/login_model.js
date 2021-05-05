@@ -23,28 +23,22 @@ User.create = (newUser, result) => {
   );
 };
 
-User.login = async (user, data) => {
-  console.log("model===> : ", user);
-
-  sql.query(
-    "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?",
-    [user.email, user.password],
-    (err, result) => {
-      if (err) {
-        console.error(err);
-        data(err, null);
-        return;
-      }
-
-      if (result.length > 0) {
-        data(null, result[0]);
-        return;
-      }
-
-      //user not found
-      data({ kind: "NOT FOUND" }, null);
+User.login = async (email, data) => {
+  sql.query("SELECT * FROM USERS WHERE EMAIL = ?", email, (err, result) => {
+    if (err) {
+      console.error(err);
+      data(err, null);
+      return;
     }
-  );
+
+    if (result.length > 0) {
+      data(null, result[0]);
+      return;
+    }
+
+    //user not found
+    data({ kind: "NOT FOUND" }, null);
+  });
 };
 
 module.exports = User;

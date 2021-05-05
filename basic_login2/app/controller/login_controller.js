@@ -30,9 +30,11 @@ exports.create = async (req, res) => {
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
-  User.login({ email, password }, async (err, data) => {
+  User.login(email, async (err, data) => {
+    const check = await bcrypt.compare(password, data.password);
+
     if (err) {
-      if ((err.kind = "not found")) {
+      if (err.kind == "not found") {
         res.status(404).send({
           msg: `unable to find a user ${email}`,
         });
@@ -42,12 +44,11 @@ exports.login = (req, res) => {
         });
       }
     } else {
-      console.log("data controller:==>", data);
-      const check = await bcrypt.compare(password, data.password);
-
-      req.session.loggedIn = true;
-      req.session.nick = data.nick;
-      res.redirect("/home");
+      if (check) {
+        req.session.loggedIn = true;
+        req.session.nick = data.nick;
+        res.redirect("/home");
+      }
     }
   });
 };
