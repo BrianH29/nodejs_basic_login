@@ -14,6 +14,7 @@ simple login
 ### basic_login2
 
 - mvc pattern
+- bcrypt password
 
 ---
 
@@ -27,3 +28,7 @@ simple login
 | nick     | varchar(5)   | NO   |     | NULL              |                   |
 | password | varchar(100) | YES  |     | NULL              |                   |
 | createAt | datetime     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+| id  | email         | nick | password                                                     | createAt            |
+| --- | ------------- | ---- | ------------------------------------------------------------ | ------------------- |
+| 1   | ppp@naver.com | pj   | $2b$10$mzUlX0FRrc6rKIzSuFBJM.fOAAeHK5EG6C2IhPV5EMITa1vY448bm | 2021-05-05 21:35:19 |
