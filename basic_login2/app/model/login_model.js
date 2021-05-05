@@ -23,14 +23,16 @@ User.create = (newUser, result) => {
   );
 };
 
-User.login = (user, data) => {
+User.login = async (user, data) => {
+  console.log("model===> : ", user);
+
   sql.query(
     "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?",
     [user.email, user.password],
     (err, result) => {
       if (err) {
         console.error(err);
-        result(err, null);
+        data(err, null);
         return;
       }
 
@@ -40,7 +42,7 @@ User.login = (user, data) => {
       }
 
       //user not found
-      result({ kind: "NOT FOUND" }, null);
+      data({ kind: "NOT FOUND" }, null);
     }
   );
 };
