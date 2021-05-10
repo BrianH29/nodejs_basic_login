@@ -16,6 +16,10 @@ simple login
 - mvc pattern
 - bcrypt password
 
+### basic_login3
+
+- passport
+
 ---
 
 ![login](./img/Login.PNG)
