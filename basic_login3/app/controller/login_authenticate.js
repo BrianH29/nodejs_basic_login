@@ -7,7 +7,7 @@ exports.isLoggedIn = (req, res, next) => {
 };
 
 exports.isNotLoggedIn = (req, res, next) => {
-  if (!req.isAuthenticated) {
+  if (!req.isAuthenticated()) {
     next();
   } else {
     const message = encodeURIComponent("You are already logged in");

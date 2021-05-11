@@ -1,10 +1,9 @@
 const User = require("../model/login_model");
-const { isLoggedIn, isNotLoggedIn } = require("./login_authenticate");
+const passport = require("passport");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-(exports.create = isNotLoggedIn),
-  async (req, res) => {
+exports.create = async (req, res) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(req.body.password, salt);
 
@@ -24,3 +23,29 @@ const saltRounds = 10;
       res.redirect("/");
     });
   };
+
+exports.login = (req,res,next) => {
+  passport.authenticate('local', (authError, user, info) => {
+    if(authError){
+      console.error(authError);
+      return next(authError); 
+    }
+
+    if(!user) {
+      return res.redirect(`/loginError=${info.message}`);
+    }
+
+    return req.login(user, (loginError) => {
+      if(loginError){
+        console.error(loginError);
+        return next(loginError); 
+      } 
+      return res.redirect('/home'); 
+    });
+  })(req, res, next); 
+}
+
+exports.logout = (req,res) => {
+  req.logout();  
+  res.redirect('/'); 
+}
