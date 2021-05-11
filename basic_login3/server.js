@@ -3,13 +3,16 @@ const session = require("express-session");
 const path = require("path");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
+const passport = require('passport'); 
 const dotenv = require("dotenv");
 
 dotenv.config();
 const indexRouter = require("./app/routes/index");
 const loginRouter = require("./app/routes/login_auth");
+const passportConfig = require('./app/passport');
 
 const app = express();
+passportConfig(); 
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -31,9 +34,12 @@ app.use(
     },
   })
 );
+app.use(passport.initialize()); 
+app.use(passport.session()); 
 
 app.use("/", indexRouter);
 app.use("/auth", loginRouter);
+
 
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} No router to connect`);
