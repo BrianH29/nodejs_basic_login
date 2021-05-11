@@ -2,7 +2,7 @@ exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.status(404).render("error", { message: "you are already logged in" });
+    res.status(404).render("error", { message: "you need to log in" });
   }
 };
 
@@ -11,6 +11,9 @@ exports.isNotLoggedIn = (req, res, next) => {
     next();
   } else {
     const message = encodeURIComponent("You are already logged in");
-    res.redirect(`/?error=${message}`);
+    res.render('error',{
+      message : message,
+      status : 404
+    })
   }
 };
