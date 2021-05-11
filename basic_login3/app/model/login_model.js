@@ -25,4 +25,38 @@ User.create = (newUser, result) => {
   );
 };
 
+User.login = (email, result) => {
+  sql.query("SELECT * FROM USERS WHERE EMAIL = ?", email, (err,res) => {
+    if(err){
+      console.error(err);
+      result(err, null);
+      return; 
+    }
+
+    if(res.length > 0){
+      result(null, res[0]);
+      return; 
+    }
+
+    
+  });
+};
+
+User.findById = (id, result) => {
+   sql.query("SELECT * FROM USERS WHERE ID = ?", id, (err, res) => {
+    if(err) {
+      console.error(err);
+      result(err, null);
+      return; 
+    }
+
+    if(res.length>0){
+      result(null, res[0])
+      return; 
+    }
+
+    result({kind : 'not found'}, null); 
+  })
+}
+
 module.exports = User;
