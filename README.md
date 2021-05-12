@@ -20,6 +20,11 @@ simple login
 
 - passport
 
+### basic_login4
+
+- sequelize
+- passport-kakao
+
 ---
 
 ![login](./img/Login.PNG)
