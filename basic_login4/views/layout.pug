@@ -28,6 +28,8 @@ html
               td
                 button.btn.btn-primary(type='submit') Login
               td
+                a#kakao.btn.btn-primary(href='/auth/kakao') Kakao
+              td
                 a.btn.btn-primary(href='/join') Join
             if loginError
                 .error-message= loginError
