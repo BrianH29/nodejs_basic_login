@@ -3,14 +3,18 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const {sequelize} = require('./models');
+const passport = require('passport'); 
 const path = require('path'); 
 const dotenv = require('dotenv');
 
 dotenv.config(); 
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth'); 
+const passportConfig = require('./passport'); 
 
 const app = express(); 
 sequelize.sync(); 
+passportConfig(); 
 
 app.set('views', path.join(__dirname,'views')); 
 app.set('view engine','pug'); 
@@ -31,7 +35,11 @@ app.use(session({
     }
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', pageRouter); 
+app.use('/auth', authRouter); 
 
 app.use((req,res,next) => {
     const error = new Error(`${req.method} ${req.url} No router to Connect`);
