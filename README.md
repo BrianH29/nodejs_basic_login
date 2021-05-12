@@ -57,6 +57,6 @@ simple login
 | updateAt | datetime     | NO   |     | NULL              |                   |
 | deleteAt | datetime     | YES  |     | NULL              |                   |
 
-| id  | email         | nick | password  | Provider | snsnId    | createAt            | updateAt            | deketeAt |
+| id  | email         | nick | password  | Provider | snsnId    | createAt            | updateAt            | deleteAt |
 | --- | ------------- | ---- | ----------| -------- |-----------| ------------------- | --------------------| ---------|
 | 1   | hyp@naver.com | B    | NULL      | kakao    | 2321312   | 2021-05-05 21:35:19 | 2021-05-05 21:35:19 | NULL     |
